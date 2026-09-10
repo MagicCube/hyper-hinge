@@ -1,0 +1,9 @@
+node_modules/
+dist/
+bin/lid-sensor
+release/
+.DS_Store
+# Independently downloaded third-party assets; keep provenance, not binaries.
+public/fonts/ndot57.woff2
+public/music/*.mid
+work/

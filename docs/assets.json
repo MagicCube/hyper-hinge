@@ -1,0 +1,12 @@
+{
+  "ndot": {
+    "path": "public/fonts/ndot57.woff2",
+    "url": "https://db.onlinewebfonts.com/t/d7a74ed36ff0603a3e41b6da32c47f03.woff2",
+    "sha256": "8a1de5f6322a58c7f23022413ccfaea2b00b577c4099fa9639c6365c7ef7a0a0"
+  },
+  "midi": {
+    "path": "public/music/arcas-solea.mid",
+    "url": "https://bitmidi.com/uploads/31604.mid",
+    "sha256": "4c5c9cddbe34fa42f57c22b1a6b6de3de282c07d5a5d1ae74c3bc6d978128cb6"
+  }
+}

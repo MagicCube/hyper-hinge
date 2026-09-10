@@ -1,0 +1,43 @@
+{
+  "name": "hyper-hinge",
+  "productName": "HyperHinge",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Three little apps. One laptop hinge. A Nothing-inspired playground.",
+  "author": "Henry",
+  "license": "UNLICENSED",
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "native": "node scripts/build-native.mjs",
+    "dev": "node scripts/check-assets.mjs && node scripts/dev.mjs",
+    "dev:web": "node scripts/check-assets.mjs && vite --host 127.0.0.1",
+    "build": "node scripts/check-assets.mjs && tsc --noEmit && vite build && npm run native",
+    "start": "npm run build && electron .",
+    "test": "node --test tests/*.test.mjs",
+    "test:desktop": "node scripts/test-desktop.mjs",
+    "package": "npm run build && electron-packager . HyperHinge --platform=darwin --arch=arm64 --icon=public/hyperhinge.icns --out=release --overwrite --ignore='^/(release|docs|tests|scripts|src|work|native|examples|node_modules)(/|$)'",
+    "setup:assets": "node scripts/setup-assets.mjs",
+    "format": "prettier --write src electron scripts tests examples docs README.md AGENTS.md CONTRIBUTING.md",
+    "format:check": "prettier --check src electron scripts tests examples docs README.md AGENTS.md CONTRIBUTING.md"
+  },
+  "dependencies": {
+    "@tonejs/midi": "^2.0.28",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "three": "^0.186.0"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.3.0",
+    "@types/node": "^24.13.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/three": "^0.185.4",
+    "@vitejs/plugin-react": "^6.1.1",
+    "electron": "^44.3.0",
+    "playwright": "^1.63.0",
+    "prettier": "^3.9.6",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.2"
+  }
+}
