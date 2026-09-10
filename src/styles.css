@@ -233,8 +233,8 @@ code {
 }
 .app-launchers {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 42px;
+  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+  gap: 24px;
   width: 670px;
   max-width: 100%;
   margin: 45px 0 0;
@@ -1143,4 +1143,16 @@ select {
 }
 .contribute-dialog::backdrop {
   background: var(--color-overlay);
+}
+
+/* Registered apps wrap onto additional rows; compact screens keep readable icons. */
+.app-launchers {
+  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+  width: min(900px, 100%);
+}
+@media (max-width: 700px) {
+  .app-launchers {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 26px;
+  }
 }

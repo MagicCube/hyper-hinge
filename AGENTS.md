@@ -5,8 +5,8 @@ Read `docs/design-language.md` and `docs/native-api.md` before changing UI or se
 ## Product
 
 - Name: HyperHinge. Slogan exactly: `Did you know there's a hinge sensor in your Macbook?`
-- An iPad-like Home Screen: useful hinge widgets above three installed app icons. The app registry owns the list.
-- Apps: Lid Lab, Don’t Wake Up, Accordion. Keep the Home route and fullscreen available everywhere.
+- An iPad-like Home Screen: useful hinge widgets above registered app icons. The app registry owns the list.
+- Apps: Lid Lab, Don’t Wake Up, Accordion, The Other Side, Laptop Pinball. Keep the Home route and fullscreen available everywhere.
 - Do not restore Reality Stabilizer, the original dashboard sidebar, green accents or paper-poster art.
 - Nothing-inspired shell: exact red/black/white/gray tokens. Display font Ndot 57; all other UI Inter. Do not silently replace either font. Actual 3D game art may use its defined material palette.
 - The monster must be a real, continuously animated 3D character. Its home icon is the same character peeking from a window. No sprite pose swapping as a substitute.

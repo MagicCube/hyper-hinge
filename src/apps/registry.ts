@@ -4,6 +4,8 @@ import { LidLab } from "./lid-lab/LidLab";
 import { DontWakeUp } from "./dont-wake-up/DontWakeUp";
 import { Accordion } from "./accordion/Accordion";
 import { MonsterIcon } from "./dont-wake-up/MonsterScene";
+import { TheOtherSide, OtherSideIcon } from "./the-other-side/TheOtherSide";
+import { LaptopPinball, PinballIcon } from "./laptop-pinball/LaptopPinball";
 export const apps: MiniAppDefinition[] = [
   {
     id: "lid-lab",
@@ -30,6 +32,24 @@ export const apps: MiniAppDefinition[] = [
     description: "No lessons. Just a little showmanship.",
     icon: AccordionIcon,
     component: Accordion,
+    tone: "light",
+  },
+  {
+    id: "the-other-side",
+    name: "The Other Side",
+    subtitle: "Peek behind your desktop",
+    description: "An ordinary desktop. An extraordinary little world.",
+    icon: OtherSideIcon,
+    component: TheOtherSide,
+    tone: "light",
+  },
+  {
+    id: "laptop-pinball",
+    name: "Laptop Pinball",
+    subtitle: "Tilt. Roll. Hole.",
+    description: "A little gravity. A delicate landing.",
+    icon: PinballIcon,
+    component: LaptopPinball,
     tone: "light",
   },
 ];

@@ -29,18 +29,18 @@ export function MonsterScene({
       return;
     }
     renderer.setPixelRatio(Math.min(devicePixelRatio, icon ? 1.5 : 2));
-    renderer.setClearColor(icon ? 0x152d35 : 0x101010, 1);
+    renderer.setClearColor(icon ? 0x242424 : 0x101010, 1);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.35;
+    renderer.toneMappingExposure = 1.1;
     renderer.shadowMap.enabled = !icon;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     container.append(renderer.domElement);
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(icon ? 32 : 35, 1, 0.1, 30);
-    camera.position.set(icon ? 0 : 0.6, icon ? 2.8 : 2.7, icon ? 4.65 : 8.8);
-    camera.lookAt(0, icon ? 2.5 : 1.65, 0.1);
-    scene.add(new THREE.HemisphereLight(0xbddcec, 0x435066, 2));
+    camera.position.set(icon ? 0 : 0.6, icon ? 2.65 : 2.5, icon ? 4.15 : 8.8);
+    camera.lookAt(0, icon ? 2.45 : 1.65, 0.1);
+    scene.add(new THREE.HemisphereLight(0xfff6e4, 0x51523d, 1.8));
     const key = new THREE.DirectionalLight(0xffead6, 4);
     key.position.set(-3, 6, 5);
     key.castShadow = !icon;
@@ -52,15 +52,15 @@ export function MonsterScene({
     key.shadow.camera.top = 5;
     key.shadow.camera.bottom = -3;
     scene.add(key);
-    const rim = new THREE.DirectionalLight(0x63c9de, 3);
+    const rim = new THREE.DirectionalLight(0xe9f3c8, 2.5);
     rim.position.set(3, 3, -3);
     scene.add(rim);
-    const monster = createMonster(icon ? 16000 : 65000);
+    const monster = createMonster(icon);
     scene.add(monster.root);
     if (!icon) {
       const floor = new THREE.Mesh(
         new THREE.PlaneGeometry(200, 200),
-        new THREE.MeshStandardMaterial({ color: 0x151b21, roughness: 1 }),
+        new THREE.MeshStandardMaterial({ color: 0x181818, roughness: 1 }),
       );
       floor.rotation.x = -Math.PI / 2;
       floor.position.y = -0.21;
@@ -68,7 +68,7 @@ export function MonsterScene({
       scene.add(floor);
       const pillow = new THREE.Mesh(
         new RoundedBoxGeometry(3.5, 0.36, 2.1, 6, 0.2),
-        new THREE.MeshStandardMaterial({ color: 0x484354, roughness: 1 }),
+        new THREE.MeshStandardMaterial({ color: 0x414141, roughness: 1 }),
       );
       pillow.position.set(0, -0.15, 0.03);
       pillow.receiveShadow = true;
@@ -85,6 +85,26 @@ export function MonsterScene({
     const observer = new ResizeObserver(resize);
     observer.observe(container);
     resize();
+    const pointer = { x: 0, y: 0 };
+    const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+    const trackPointer = (event: PointerEvent) => {
+      const rect = container.getBoundingClientRect();
+      pointer.x = THREE.MathUtils.clamp(
+        ((event.clientX - rect.left) / rect.width) * 2 - 1,
+        -1,
+        1,
+      );
+      pointer.y = THREE.MathUtils.clamp(
+        1 - ((event.clientY - rect.top) / rect.height) * 2,
+        -1,
+        1,
+      );
+    };
+    const resetPointer = () => {
+      pointer.x = pointer.y = 0;
+    };
+    container.addEventListener("pointermove", trackPointer);
+    container.addEventListener("pointerleave", resetPointer);
     let raf = 0,
       previous = 0;
     const frame = (time: number) => {
@@ -102,6 +122,8 @@ export function MonsterScene({
               ? 0
               : s.alertness,
         icon,
+        pointer,
+        reducedMotion.matches,
       );
       if (!document.hidden) renderer.render(scene, camera);
       raf = requestAnimationFrame(frame);
@@ -110,6 +132,8 @@ export function MonsterScene({
     return () => {
       cancelAnimationFrame(raf);
       observer.disconnect();
+      container.removeEventListener("pointermove", trackPointer);
+      container.removeEventListener("pointerleave", resetPointer);
       const geometries = new Set<THREE.BufferGeometry>(),
         materials = new Set<THREE.Material>();
       scene.traverse((object) => {
@@ -137,7 +161,7 @@ export function MonsterScene({
       role="img"
       aria-label={
         icon
-          ? "A furry 3D monster peeking out of a window"
+          ? "A green one-eyed 3D monster peeking out of a window"
           : `3D monster ${phase}`
       }
     >

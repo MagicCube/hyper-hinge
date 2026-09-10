@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useHinge } from "../../hinge/api";
+import { hinge, useHinge } from "../../hinge/index";
 import { Instrument } from "./instrument";
 import { loadScore, type Score } from "./score";
 export function Accordion() {
@@ -36,16 +36,17 @@ export function Accordion() {
   useEffect(() => {
     voice.current?.expression(lid.available ? lid.velocity : 0);
   }, [lid]);
-  const toggle = async () => {
+  const enableSound = async () => {
     if (!score) return;
     try {
       const v = (voice.current ??= new Instrument(score));
       v.octave = octaveRef.current;
-      if (v.playing) v.pause();
-      else await v.play();
+      const current = hinge.getSnapshot();
+      v.expression(current.available ? current.velocity : 0);
+      if (!v.playing) await v.play();
       setPlaying(v.playing);
     } catch {
-      setError("Audio could not start. Try Play again.");
+      setError("Audio could not start. Try Enable sound again.");
     }
   };
   const action = (key: string) => {
@@ -67,16 +68,16 @@ export function Accordion() {
   useEffect(() => {
     const keyboard = (e: KeyboardEvent) => {
       if (
-        (e.target as HTMLElement).matches("input,select,textarea") ||
+        document.querySelector("dialog[open]") ||
+        (e.target as HTMLElement).closest(
+          "input,select,textarea,button,[contenteditable]",
+        ) ||
         e.altKey ||
         e.metaKey ||
         e.ctrlKey
       )
         return;
-      if (e.code === "Space") {
-        e.preventDefault();
-        if (!e.repeat) void toggle();
-      } else if (e.key.startsWith("Arrow")) {
+      if (e.key.startsWith("Arrow")) {
         e.preventDefault();
         if (!e.repeat) action(e.key);
       }
@@ -151,13 +152,18 @@ export function Accordion() {
       <div className="music-transport">
         <button
           className="pill primary"
-          onClick={() => void toggle()}
-          disabled={loading || !score}
+          onClick={() => void enableSound()}
+          disabled={loading || !score || playing}
         >
-          {loading ? "Loading score…" : playing ? "Pause" : "Play"}
-          <kbd>space</kbd>
+          {loading
+            ? "Loading score…"
+            : playing
+              ? "Sound enabled"
+              : "Enable sound"}
         </button>
-        <span className="quiet">You move. The score does the clever part.</span>
+        <span className="quiet">
+          Move to play. Stop to hold. Move faster to play faster.
+        </span>
       </div>
       <div className="music-progress">
         <input
@@ -197,7 +203,8 @@ export function Accordion() {
       </div>
       <p className="quiet music-note">
         Octave {octave > 0 ? "+" : ""}
-        {octave} · Move the lid for expression. Every note comes from the score.
+        {octave} · Open or close the lid to continue the score. Still means
+        silent.
       </p>
       {error && <p role="alert">{error}</p>}
     </div>

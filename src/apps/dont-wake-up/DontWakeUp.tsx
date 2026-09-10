@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { hinge, useHinge } from "../../hinge/api";
+import { hinge, useHinge } from "../../hinge/index";
 import { MonsterScene } from "./MonsterScene";
 import { createRound, startRound, stepRound } from "./game.mjs";
 export function DontWakeUp() {
@@ -24,6 +24,13 @@ export function DontWakeUp() {
     raf = requestAnimationFrame(frame);
     return () => cancelAnimationFrame(raf);
   }, []);
+  useEffect(() => {
+    if (round.phase !== "ready" || !lid.available || lid.angle < target + 15)
+      return;
+    const next = startRound(lid.angle, target);
+    ref.current = next;
+    setRound(next);
+  }, [round.phase, lid.available, lid.angle, target]);
   const start = () => {
     if (!lid.available) return;
     if (lid.angle < target + 15) {
@@ -70,14 +77,20 @@ export function DontWakeUp() {
         <span>WIDE AWAKE</span>
       </div>
       <div className="sleep-actions">
-        {round.phase !== "playing" ? (
+        {round.phase === "awake" || round.phase === "won" ? (
           <button
             className="pill primary"
             onClick={start}
             disabled={!lid.available}
           >
-            {round.phase === "ready" ? "Start sneaking" : "Try again"}
+            Try again
           </button>
+        ) : round.phase === "ready" ? (
+          <p className="quiet" role="status">
+            {lid.available
+              ? `Open the lid to at least ${target + 15}° to begin.`
+              : "Waiting for input. Turn on Simulate to play."}
+          </p>
         ) : (
           <p className="quiet">
             {Math.max(0, Math.round(lid.angle - target))}° to go ·{" "}

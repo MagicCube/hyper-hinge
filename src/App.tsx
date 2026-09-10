@@ -148,7 +148,9 @@ export function App() {
               min="15"
               max="140"
               value={Math.max(15, lid.rawAngle)}
-              onChange={(e) => hinge.setSimulatedAngle(Number(e.target.value))}
+              onInput={(e) =>
+                hinge.setSimulatedAngle(Number(e.currentTarget.value))
+              }
             />
             <output>{Math.round(lid.rawAngle)}°</output>
           </div>

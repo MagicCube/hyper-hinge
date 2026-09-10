@@ -1,0 +1,251 @@
+.other-side {
+  margin: 24px auto 0;
+  max-width: 1200px;
+}
+.other-stage {
+  position: relative;
+  height: clamp(340px, 55vh, 650px);
+  overflow: hidden;
+  border-radius: 22px;
+  background: var(--color-surface);
+  perspective: 1100px;
+  isolation: isolate;
+}
+.other-city {
+  position: absolute;
+  inset: 0;
+}
+.other-city canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.other-desktop {
+  position: absolute;
+  inset: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  transform-origin: 50% 0;
+  transform: rotateX(calc(var(--reveal) * 83deg))
+    translateY(calc(var(--reveal) * -22%));
+  backface-visibility: hidden;
+  box-shadow:
+    0 16px 0 var(--color-ink),
+    0 24px 35px var(--color-overlay);
+  overflow: hidden;
+}
+.other-wallpaper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.other-wallpaper i {
+  position: absolute;
+  width: 75%;
+  aspect-ratio: 1;
+  border: 55px solid var(--color-line);
+  border-radius: 50%;
+  right: -28%;
+  bottom: -110%;
+}
+.other-wallpaper i:nth-child(2) {
+  width: 95%;
+  right: -38%;
+  bottom: -130%;
+  border-width: 1px;
+}
+.other-wallpaper i:nth-child(3) {
+  width: 55%;
+  right: -18%;
+  bottom: -85%;
+  border-color: var(--color-red);
+  border-width: 24px;
+}
+.other-desktop-title {
+  position: absolute;
+  left: 6%;
+  top: 10%;
+}
+.other-desktop-title > span,
+.other-note > span {
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+.other-desktop-title strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4.8vw, 68px);
+  font-weight: 400;
+  line-height: 1.1;
+  margin-top: 25px;
+}
+.other-desktop-title small {
+  display: block;
+  margin-top: 17px;
+  font-size: 11px;
+}
+.other-files {
+  position: absolute;
+  right: 6%;
+  top: 10%;
+  display: flex;
+  gap: 26px;
+}
+.other-files > div {
+  font-size: 10px;
+  text-align: center;
+}
+.other-files i {
+  display: block;
+  width: 38px;
+  height: 29px;
+  background: var(--color-dim);
+  border-radius: 3px;
+  margin: 0 auto 10px;
+  position: relative;
+}
+.other-files i:before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 17px;
+  height: 8px;
+  background: inherit;
+  border-radius: 3px;
+}
+.other-note {
+  position: absolute;
+  left: 6%;
+  bottom: 9%;
+  border-left: 2px solid var(--color-red);
+  padding-left: 16px;
+}
+.other-note p {
+  font-size: 21px;
+  line-height: 1.2;
+  margin: 10px 0;
+}
+.other-note small {
+  font-size: 9px;
+}
+.other-city-caption {
+  position: absolute;
+  left: 28px;
+  bottom: 23px;
+  color: var(--color-text);
+  text-shadow: 0 2px 6px var(--color-ink);
+  pointer-events: none;
+}
+.other-city-caption span {
+  letter-spacing: 3px;
+  font-size: 10px;
+}
+.other-city-caption p {
+  font-size: 12px;
+  margin: 5px 0 0;
+}
+.other-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 24px;
+}
+.other-eyebrow {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: var(--color-muted);
+}
+.other-caption h2 {
+  font-size: clamp(24px, 3vw, 39px);
+  margin: 8px 0;
+}
+.other-caption p {
+  color: var(--color-muted);
+  font-size: 12px;
+  margin: 0;
+  max-width: 560px;
+}
+.other-depth {
+  text-align: right;
+  flex-shrink: 0;
+}
+.other-depth strong {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 400;
+  display: block;
+}
+.other-depth span {
+  display: block;
+  font-size: 8px;
+  color: var(--color-muted);
+  letter-spacing: 1px;
+  margin-top: 8px;
+}
+.other-track {
+  height: 2px;
+  background: var(--color-line);
+  margin-top: 21px;
+}
+.other-track i {
+  display: block;
+  height: 100%;
+  background: var(--color-red);
+}
+.other-hint {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 9px;
+  color: var(--color-muted);
+  margin-top: 10px;
+}
+.other-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  padding: 30px;
+  background: var(--color-surface);
+  text-align: center;
+}
+@media (max-width: 540px) {
+  .other-stage {
+    height: 380px;
+  }
+  .other-desktop-title {
+    top: 10%;
+  }
+  .other-files {
+    top: auto;
+    bottom: 8%;
+    left: 6%;
+    right: auto;
+    gap: 25px;
+  }
+  .other-note {
+    bottom: 27%;
+  }
+  .other-desktop-title strong {
+    font-size: 38px;
+  }
+  .other-caption {
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .other-depth strong {
+    font-size: 29px;
+  }
+  .other-depth span {
+    max-width: 75px;
+    line-height: 1.7;
+  }
+  .other-caption p {
+    font-size: 11px;
+  }
+  .other-hint {
+    font-size: 8px;
+  }
+}

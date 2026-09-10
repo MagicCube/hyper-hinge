@@ -6,7 +6,7 @@ This document is normative. New apps inherit the shared shell. Do not redesign t
 
 - Product name: **HyperHinge**. Repository: `magiccube/hyper-hinge`.
 - Slogan, verbatim: **Did you know there's a hinge sensor in your Macbook?**
-- Structure: an iPad-like home screen. Useful live widgets come first, then application icons. No permanent dashboard sidebar. Exactly three installed apps at present; derive the count from the registry.
+- Structure: an iPad-like home screen. Useful live widgets come first, then application icons. No permanent dashboard sidebar. Derive the installed app list and count from the registry.
 - Visual reference: the early Nothing OS monochrome/red widget language, dot typography, rounded system controls, and restrained spacing. Not Apple glassmorphism, a generic SaaS dashboard, or an editorial poster.
 
 ## Fonts — mandatory
@@ -49,9 +49,9 @@ CSS colors reference tokens. Red is a deliberate signal, not a background wash a
 
 ## 3D/game art exception
 
-The shell, HUD, labels, menus and controls always obey the monochrome/red palette and fonts above. The actual 3D scene and rendered app-icon artwork may use a coherent character/material palette. This exception is explicitly requested for the Monsters, Inc.-inspired furry monster: cyan/purple fur, horn material, eyes, teeth, and colored stage lighting.
+The shell, HUD, labels, menus and controls always obey the monochrome/red palette and fonts above. The actual 3D scene and rendered app-icon artwork may use a coherent character/material palette. This exception is explicitly requested for the owner-requested green cyclops: lime-green textured skin, teal iris, ivory horns and teeth, and warm stage lighting.
 
-The monster is original procedural 3D geometry with instanced fur, materials, depth, lights and continuously animated eyes, eyebrows, breathing and arms. Reference quality: an appealing American animated-film/game creature. Do not replace the scene with a raster screenshot, CSS blob, flat illustration, or a finite sprite-state swap. Do not claim film-production fidelity for a prototype model. Model animation is continuously driven by game arousal, derived from hinge movement.
+The monster is procedural 3D geometry with a single large eye, pear-shaped body, slim articulated limbs, materials, depth, lights and continuously animated eyelids, gaze, eyebrows, breathing, fingers and arms. The owner-provided green cyclops references supersede the previous cyan/purple furry character. Reference quality: an appealing American animated-film/game creature. Do not replace the scene with a raster screenshot, CSS blob, flat illustration, or a finite sprite-state swap. Do not claim film-production fidelity for a prototype model. Model animation is continuously driven by game arousal, derived from hinge movement.
 
 The Lid Lab model represents the real lid pivot. Its display plane rotates relative to its base using the angle in degrees. Keep its technical illustration legible. The Accordion folds are geometric UI art, driven by the live angle.
 
@@ -62,10 +62,18 @@ The Lid Lab model represents the real lid pivot. Its display plane rotates relat
 - Every control is keyboard operable and named. Restore focus after dialogs; keep native dialog focus trapping. Provide text for unavailable sensor and WebGL states.
 - Support the main desktop window and verify 320, 375, 414, and 768px widths for the browser preview. No horizontal overflow, clipped controls, or wrapping app labels.
 - Use one native sensor service and one shared store. App render loops read the latest snapshot; do not run hardware reads per frame.
-- Cancel animation frames, dispose Three.js geometry/materials/textures and Web Audio nodes on unmount. Cap pixel ratio; icon renderers use fewer fur instances. Do not keep the full game renderer alive on the home screen.
+- Cancel animation frames, dispose Three.js geometry/materials/textures and Web Audio nodes on unmount. Cap pixel ratio; icon renderers use lower geometry detail. Do not keep the full game renderer alive on the home screen.
 
 ## Review gate
 
-Check exact slogan, font load, palette, widget hierarchy, the three real app routes, the peeking icon, fullscreen/home behavior, simulator labeling, and unavailable states. New app contributions must include a screenshot and describe how hinge angle or motion affects the interaction. Changes to these brand rules require explicit project-owner direction.
+Check exact slogan, font load, palette, widget hierarchy, all registered app routes, the peeking icon, fullscreen/home behavior, simulator labeling, and unavailable states. New app contributions must include a screenshot and describe how hinge angle or motion affects the interaction. Changes to these brand rules require explicit project-owner direction.
 
 References: [Nothing OS](https://us.nothing.tech/nothing-os), [Nothing community discussion of Ndot 57](https://nothing.community/en/d/104-ndot57-the-nothing-typeface), and the owner-provided home-screen / monster references. `docs/home-concept.png` is the initial Nothing concept; subsequent explicit owner changes add the widget row, exact slogan and real 3D window icon. It is not a frozen screenshot to copy over those newer requirements.
+
+## The Other Side · 屏幕后面
+
+Owner-requested app: a monochrome desktop lifts in perspective as the lid closes from 105° to 35°, revealing a real procedural 3D miniature city. The city material palette includes teal, terracotta, warm windows, foliage and sandstone, inspired by the supplied miniature-city reference. The shell retains its prescribed tokens. Reopening reverses the reveal; unavailable input freezes the scene at its last angle. Reduced motion stops traffic. No full closure is needed.
+
+## Laptop Pinball
+
+Owner-requested app: a real Three.js table rotates about its hinge axis. A silver ball rolls in a central guide lane under projected gravity and damping. Closing below the round’s neutral angle rolls away; opening rolls back. Neutral defaults to 105° and can be reset while paused. Each course requires two continuous, low-speed stops in alternating directions before the final hole opens. The three courses tighten hold, capture and time requirements (28/25/24 seconds). Both open ends drain the ball; sustained full tilt loses. All courses are reachable using 75–135° simulated lid angles. The final red-ringed hole is an actual opening in the mesh, covered until unlocked. Freeze mechanics on unavailable input, lost focus, hidden document or open dialog. Home icons use a monochrome/red table glyph. All game copy is English.

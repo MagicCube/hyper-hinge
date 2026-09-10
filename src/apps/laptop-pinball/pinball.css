@@ -1,0 +1,130 @@
+.pinball-app {
+  max-width: 1000px;
+  margin: 12px auto 0;
+}
+.pinball-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.pinball-eyebrow,
+.pinball-tilt > span {
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  color: var(--color-muted);
+}
+.pinball-intro h2 {
+  font-size: 38px;
+  margin: 10px 0 0;
+}
+.pinball-tilt {
+  text-align: right;
+  flex-shrink: 0;
+}
+.pinball-tilt strong {
+  display: block;
+  font: 38px var(--font-display);
+  margin-top: 6px;
+}
+.pinball-scene {
+  height: clamp(310px, 46vh, 490px);
+  width: 100%;
+}
+.pinball-scene canvas {
+  display: block;
+}
+.pinball-readouts {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--color-muted);
+  border-top: 1px solid var(--color-line);
+  padding-top: 15px;
+  font-variant-numeric: tabular-nums;
+}
+.pinball-readouts > span:first-child {
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+.pinball-readouts b {
+  color: var(--color-text);
+  font-weight: 500;
+}
+.pinball-status {
+  text-align: center;
+  font-size: 14px;
+  min-height: 20px;
+  margin: 22px 0 18px;
+}
+.pinball-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.pinball-actions button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.pinball-help {
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 11px;
+  line-height: 1.9;
+  margin: 20px auto 0;
+  max-width: 680px;
+}
+@media (max-width: 540px) {
+  .pinball-intro h2 {
+    font-size: 25px;
+  }
+  .pinball-tilt strong {
+    font-size: 27px;
+  }
+  .pinball-eyebrow,
+  .pinball-tilt > span {
+    font-size: 8px;
+    letter-spacing: 0.5px;
+  }
+  .pinball-scene {
+    height: 340px;
+  }
+  .pinball-status {
+    font-size: 12px;
+  }
+  .pinball-readouts {
+    font-size: 9px;
+    gap: 5px;
+  }
+  .pinball-readouts > span:first-child {
+    font-size: 8px;
+    letter-spacing: 0;
+  }
+}
+
+.pinball-objectives {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  font-size: 10px;
+  color: var(--color-dim);
+}
+.pinball-objectives .active,
+.pinball-urgent {
+  color: var(--color-red);
+}
+.pinball-objectives progress {
+  width: 60px;
+  height: 4px;
+  accent-color: var(--color-red);
+}
+@media (max-width: 540px) {
+  .pinball-objectives {
+    gap: 14px;
+  }
+}

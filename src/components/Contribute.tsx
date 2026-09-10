@@ -25,7 +25,7 @@ export function Contribute({ close }: { close: () => void }) {
         ×
       </button>
       <h2>YOUR TURN.</h2>
-      <p>Three apps is a start. What would you make with a hinge?</p>
+      <p>Every app starts with an idea. What would you make with a hinge?</p>
       <p>
         Read <code>docs/native-api.md</code>, copy the example app, and add it
         to the registry. Hardware input, simulation and fullscreen are already
