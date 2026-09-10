@@ -36,6 +36,7 @@ npm run build        # typecheck, production renderer, native helper
 npm test             # signal processing, game rules, MIDI provenance
 npm run test:desktop # real Electron interaction tests; builds first
 npm run package      # local Apple Silicon macOS .app in release/
+npm run test:package # smoke-test the packaged renderer and external helper
 ```
 
 The local .app is a development build, not signed or notarized for public distribution. No root access, accessibility permission, or system power-setting changes are required by the app.

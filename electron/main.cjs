@@ -43,9 +43,15 @@ function startSensor() {
     });
     return;
   }
-  const processRef = spawn(path.join(app.getAppPath(), "bin/lid-sensor"), [], {
-    stdio: ["ignore", "pipe", "pipe"],
-  });
+  const processRef = spawn(
+    app.isPackaged
+      ? path.join(process.resourcesPath, "lid-sensor")
+      : path.join(app.getAppPath(), "bin/lid-sensor"),
+    [],
+    {
+      stdio: ["ignore", "pipe", "pipe"],
+    },
+  );
   child = processRef;
   let last = Date.now();
   const lines = createInterface({ input: processRef.stdout });

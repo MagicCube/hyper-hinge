@@ -13,6 +13,7 @@
 - Settings calibration saves, dialogs close with Esc, and contribution instructions are accessible.
 - The main viewport is 1536×1024 CSS pixels; screenshots may include macOS's backing scale. Home was also checked at 320, 375, 414 and 768px with no horizontal overflow.
 - No renderer `pageerror` events during the full interaction run.
+- Final packaged `.app` smoke test passes with `HYPERHINGE_REQUIRE_SENSOR=1`: the helper exists outside ASAR, has execute permission, returns a real available reading, and the packaged renderer loads Ndot 57 and the MIDI score.
 
 ## Visual fidelity review
 
@@ -28,6 +29,8 @@ Both `docs/home-concept.png` and the latest real Electron screenshots were opene
 | Game art           | Actual 3D geometry, dense instanced fur, horns, eyes and teeth, with continuous arousal-driven animation. Color is confined to the art exception. It remains a procedural prototype, not a film-quality asset. |
 | Interaction chrome | Home/fullscreen remain available, dock is shared, simulator slider appears only when enabled, and native dialogs retain focus behavior.                                                                        |
 | Responsive layout  | Compact icons retain one-line labels; source/simulation/settings remain usable. Descriptive icon subtitles hide at compact widths.                                                                             |
+
+Packaged-build smoke testing also caught the helper being archived inside ASAR by the current packager default. The helper is now copied as an extra resource and launched outside the archive.
 
 Material issues fixed: stale initial visual direction, static sprite approach, fabricated motion waveform, missing native fullscreen-state synchronization, contribution-dialog focus trapping, and cold audio startup test assumptions. Above-the-fold copy matches the final owner-directed content inventory. No known clipped primary controls or horizontal-overflow issue remains in the checked home viewports.
 

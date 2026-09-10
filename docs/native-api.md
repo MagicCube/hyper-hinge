@@ -100,7 +100,7 @@ The preload exposes no filesystem, shell execution, arbitrary channel, or arbitr
 
 ## Native protocol
 
-`native/lid-sensor.c` is compiled into `bin/lid-sensor`. The Electron main process starts exactly one helper. It matches Apple HID vendor `0x05AC`, usage page `0x20`, usage `0x8A`. It requests feature report ID 1, checks success, minimum length, report ID and a 0–180° range, then decodes a little-endian 16-bit angle from bytes 1 and 2.
+`native/lid-sensor.c` is compiled into `bin/lid-sensor`. The Electron main process starts exactly one helper. Packaged builds copy the executable outside ASAR to `process.resourcesPath/lid-sensor` and launch that real filesystem path. It matches Apple HID vendor `0x05AC`, usage page `0x20`, usage `0x8A`. It requests feature report ID 1, checks success, minimum length, report ID and a 0–180° range, then decodes a little-endian 16-bit angle from bytes 1 and 2.
 
 ```sh
 npm run native
